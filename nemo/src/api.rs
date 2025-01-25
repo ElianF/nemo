@@ -28,7 +28,7 @@ use crate::{
     execution::{DefaultExecutionEngine, ExecutionEngine},
     io::{resource_providers::ResourceProviders, ImportManager},
     parser::Parser,
-    rule_model::{components::tag::Tag, translation::ASTProgramTranslation},
+    rule_model::{components::tag::Tag, program::Program, translation::ASTProgramTranslation},
 };
 
 /// Reasoning Engine exposed by the API
@@ -37,7 +37,7 @@ pub type Engine = DefaultExecutionEngine;
 /// Load the given `file` and load the program from the file.
 ///
 /// For details see [load_string]
-pub fn load(file: PathBuf) -> Result<Engine, Error> {
+pub fn load(file: PathBuf) -> Result<Program, Error> {
     let input = read_to_string(file.clone()).map_err(|err| ReadingError::IoReading {
         error: err,
         filename: file.to_string_lossy().to_string(),
@@ -51,14 +51,18 @@ pub fn load(file: PathBuf) -> Result<Engine, Error> {
 ///
 /// # Error
 /// Returns an appropriate [Error] variant on parsing and feature check issues.
-pub fn load_string(input: String) -> Result<Engine, Error> {
+pub fn load_string(input: String) -> Result<Program, Error> {
     let program_ast = Parser::initialize(&input, String::default())
         .parse()
         .map_err(|_| Error::ProgramParseError)?;
     let program = ASTProgramTranslation::initialize(&input, String::default())
         .translate(&program_ast)
         .map_err(|_| Error::ProgramParseError)?;
+    Ok(program)
+}
 
+/// Initializes the engine based on a given program
+pub fn init_engine(program: Program) -> Result<Engine, Error> {
     ExecutionEngine::initialize(program, ImportManager::new(ResourceProviders::default()))
 }
 

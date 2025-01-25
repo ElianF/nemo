@@ -57,6 +57,11 @@ impl Operation {
         self.subterms.iter()
     }
 
+    /// Return an iterator over the arguments of this operation.
+    pub fn arguments_mut(&mut self) -> impl Iterator<Item = &mut Term> {
+        self.subterms.iter_mut()
+    }
+
     /// Return the [OperationKind] of this operation.
     pub fn operation_kind(&self) -> OperationKind {
         self.kind

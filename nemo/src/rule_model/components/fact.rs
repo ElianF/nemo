@@ -87,7 +87,7 @@ impl Display for Fact {
             }
         }
 
-        f.write_str(")")
+        f.write_str(") .")
     }
 }
 

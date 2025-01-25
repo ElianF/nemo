@@ -75,9 +75,24 @@ impl FunctionTerm {
         ValueType::FunctionTerm
     }
 
+    /// Return the terms of this function term.
+    pub fn terms(&self) -> &Vec<Term> {
+        return &self.terms;
+    }
+
+    /// Return the mut terms of this function term.
+    pub fn terms_mut(&mut self) -> &mut Vec<Term> {
+        return &mut self.terms;
+    }
+
     /// Return an iterator over the arguments of this function term.
     pub fn arguments(&self) -> impl Iterator<Item = &Term> {
         self.terms.iter()
+    }
+
+    /// Return an iterator over the mutable arguments of this function term.
+    pub fn arguments_mut(&mut self) -> impl Iterator<Item = &mut Term> {
+        self.terms.iter_mut()
     }
 
     /// Return the number of subterms contains in this function term.

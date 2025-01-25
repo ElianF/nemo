@@ -113,6 +113,14 @@ impl Rule {
         })
     }
 
+    /// Return an iterator over the negative literals in the body of this rule.
+    pub fn body_negative(&self) -> impl Iterator<Item = &Atom> {
+        self.body.iter().filter_map(|literal| match literal {
+            Literal::Positive(_) | Literal::Operation(_) => None,
+            Literal::Negative(atom) => Some(atom),
+        })
+    }
+
     /// Return a mutable reference to the body of the rule.
     pub fn body_mut(&mut self) -> &mut Vec<Literal> {
         &mut self.body
@@ -276,16 +284,16 @@ impl Rule {
         Some(())
     }
 
-    /// If the given [Term] is a function term,
-    /// then this function returns a [Hint] returning the operation
-    /// with the closest name to its tag.
-    fn hint_term_operation(term: &Term) -> Option<Hint> {
-        if let Term::FunctionTerm(function) = term {
-            Hint::similar_operation(function.tag().to_string())
-        } else {
-            None
-        }
-    }
+    // /// If the given [Term] is a function term,
+    // /// then this function returns a [Hint] returning the operation
+    // /// with the closest name to its tag.
+    // fn hint_term_operation(term: &Term) -> Option<Hint> {
+    //     if let Term::FunctionTerm(function) = term {
+    //         Hint::similar_operation(function.tag().to_string())
+    //     } else {
+    //         None
+    //     }
+    // }
 }
 
 impl Display for Rule {

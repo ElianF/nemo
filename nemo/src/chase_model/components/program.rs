@@ -14,7 +14,7 @@ use super::{
 };
 
 #[derive(Debug, Default, Clone)]
-pub(crate) struct ChaseProgram {
+pub struct ChaseProgram {
     /// Imports
     imports: Vec<ChaseImport>,
     /// Exports

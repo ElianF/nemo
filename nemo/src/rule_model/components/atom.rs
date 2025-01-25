@@ -85,6 +85,11 @@ impl Atom {
         self.terms.iter()
     }
 
+    /// Return an iterator over the arguments of this atom.
+    pub fn arguments_mut(&mut self) -> impl Iterator<Item = &mut Term> {
+        self.terms.iter_mut()
+    }
+    
     /// Return the number of subterms in this atom.
     pub fn len(&self) -> usize {
         self.terms.len()

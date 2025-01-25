@@ -38,6 +38,35 @@ impl Literal {
             Literal::Operation(literal) => Box::new(literal.arguments()),
         }
     }
+
+    pub fn arguments_mut(&mut self) -> Box<dyn Iterator<Item = &mut Term> + '_> {
+        match self {
+            Literal::Positive(literal) => Box::new(literal.arguments_mut()),
+            Literal::Negative(literal) => Box::new(literal.arguments_mut()),
+            Literal::Operation(literal) => Box::new(literal.arguments_mut()),
+        }
+    }
+
+    pub fn is_positive(&self) -> bool {
+        match self {
+            Literal::Positive(_) => true,
+            _ => false,
+        }
+    }
+
+    pub fn is_negative(&self) -> bool {
+        match self {
+            Literal::Negative(_) => true,
+            _ => false,
+        }
+    }
+
+    pub fn is_operation(&self) -> bool {
+        match self {
+            Literal::Operation(_) => true,
+            _ => false,
+        }
+    }
 }
 
 impl Display for Literal {
