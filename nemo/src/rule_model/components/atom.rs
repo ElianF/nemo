@@ -80,6 +80,11 @@ impl Atom {
         self.predicate.clone()
     }
 
+    /// Sets the predicate of this atom.
+    pub fn set_predicate(&mut self, pred: Tag) {
+        self.predicate = pred;
+    }
+
     /// Return an iterator over the arguments of this atom.
     pub fn arguments(&self) -> impl Iterator<Item = &Term> {
         self.terms.iter()

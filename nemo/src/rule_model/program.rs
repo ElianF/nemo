@@ -135,6 +135,11 @@ impl Program {
         self.rules.iter_mut()
     }
 
+    /// tmp function, return mutable rules
+    pub fn get_rules_mut(&mut self) -> &mut Vec<Rule> {
+        return &mut self.rules;
+    }
+
     /// Return an iterator over all facts.
     pub fn facts_mut(&mut self) -> impl Iterator<Item = &mut Fact> {
         self.facts.iter_mut()
