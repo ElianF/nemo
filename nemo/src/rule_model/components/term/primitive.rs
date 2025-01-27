@@ -45,6 +45,17 @@ impl Primitive {
         matches!(self, Self::Ground(_))
     }
 
+    /// Returns the ground terms if possible
+    pub fn ground_terms<'a>(&'a self) -> Box<dyn Iterator<Item = &'a GroundTerm> + 'a> {
+        Box::new(
+            match self {
+                Primitive::Ground(ground) => Some(ground),
+                Primitive::Variable(_) => None,
+            }
+            .into_iter(),
+        )
+    }
+
     /// Return the value type of this term.
     pub fn value_type(&self) -> ValueType {
         match self {
