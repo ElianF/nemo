@@ -350,13 +350,13 @@ impl ProgramComponent for Rule {
     where
         Self: Sized,
     {
-        if self.body_positive().next().is_none() {
-            builder.report_error(
-                self.origin,
-                ValidationErrorKind::UnsupportedNoPositiveLiterals,
-            );
-            return None;
-        }
+        // if self.body_positive().next().is_none() {
+        //     builder.report_error(
+        //         self.origin,
+        //         ValidationErrorKind::UnsupportedNoPositiveLiterals,
+        //     );
+        //     return None;
+        // }
 
         let safe_variables = self.safe_variables();
         let is_existential = self
