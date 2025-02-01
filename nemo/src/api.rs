@@ -54,10 +54,12 @@ pub fn load(file: PathBuf) -> Result<Program, Error> {
 pub fn load_string(input: String) -> Result<Program, Error> {
     let program_ast = Parser::initialize(&input, String::default())
         .parse()
-        .map_err(|_| Error::ProgramParseError)?;
+        .unwrap();
+        // .map_err(|_| Error::ProgramParseError)?;
     let program = ASTProgramTranslation::initialize(&input, String::default())
         .translate(&program_ast)
-        .map_err(|_| Error::ProgramParseError)?;
+        .unwrap();
+        // .map_err(|_| Error::ProgramParseError)?;
     Ok(program)
 }
 
