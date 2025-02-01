@@ -385,21 +385,21 @@ impl ProgramComponent for Rule {
             atom.validate(builder)?;
 
             for variable in atom.variables() {
-                if let Some(variable_name) = variable.name() {
-                    if !variable.is_existential() && !safe_variables.contains(variable) {
-                        builder
-                            .report_error(
-                                *variable.origin(),
-                                ValidationErrorKind::HeadUnsafe(variable.clone()),
-                            )
-                            .add_hint_option(Hint::similar(
-                                "variable",
-                                variable_name,
-                                safe_variables.iter().flat_map(|variable| variable.name()),
-                            ));
+                if let Some(_variable_name) = variable.name() {
+                    // if !variable.is_existential() && !safe_variables.contains(variable) {
+                    //     builder
+                    //         .report_error(
+                    //             *variable.origin(),
+                    //             ValidationErrorKind::HeadUnsafe(variable.clone()),
+                    //         )
+                    //         .add_hint_option(Hint::similar(
+                    //             "variable",
+                    //             variable_name,
+                    //             safe_variables.iter().flat_map(|variable| variable.name()),
+                    //         ));
 
-                        return None;
-                    }
+                    //     return None;
+                    // }
                 } else {
                     builder.report_error(*variable.origin(), ValidationErrorKind::HeadAnonymous);
                     return None;
