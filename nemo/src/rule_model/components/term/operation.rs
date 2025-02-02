@@ -67,6 +67,11 @@ impl Operation {
         self.kind
     }
 
+    /// Sets the [OperationKind] of this operation.
+    pub fn set_kind(&mut self, new_kind: OperationKind) {
+        self.kind = new_kind;
+    }
+
     /// Return the value type of this term.
     pub fn value_type(&self) -> ValueType {
         self.kind.return_type()

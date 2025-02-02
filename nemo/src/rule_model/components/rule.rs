@@ -267,13 +267,13 @@ impl Rule {
                     return None;
                 }
 
-                if !safe_variables.contains(operation_variable) {
-                    builder.report_error(
-                        *operation_variable.origin(),
-                        ValidationErrorKind::OperationUnsafe(operation_variable.clone()),
-                    );
-                    return None;
-                }
+                // if !safe_variables.contains(operation_variable) {
+                //     builder.report_error(
+                //         *operation_variable.origin(),
+                //         ValidationErrorKind::OperationUnsafe(operation_variable.clone()),
+                //     );
+                //     return None;
+                // }
             }
         }
 
