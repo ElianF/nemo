@@ -6,7 +6,7 @@ use nemo_physical::datavalues::DataValue;
 
 use crate::rule_model::{
     error::{
-        hint::Hint, info::Info, validation_error::ValidationErrorKind, ComplexErrorLabelKind,
+        info::Info, validation_error::ValidationErrorKind, ComplexErrorLabelKind,
         ValidationErrorBuilder,
     },
     origin::Origin,
